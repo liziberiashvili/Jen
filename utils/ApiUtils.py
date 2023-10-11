@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import requests
 
 from utils.LoggerUtils import LoggerUtils
@@ -5,7 +7,8 @@ from utils.ParserUtils import ParserUtils
 
 
 class ApiUtils:
-    __base_url = ParserUtils.parse_json("../resources/config.json")["api_url"]
+    path = Path("resources/config.json")
+    __base_url = ParserUtils.parse_json(path.absolute())
 
     @classmethod
     def post(cls, endpoint, body):
